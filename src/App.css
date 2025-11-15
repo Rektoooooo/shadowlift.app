@@ -1,4 +1,5 @@
-.App {
+.app {
   min-height: 100vh;
-  background: linear-gradient(180deg, var(--bg-darker) 0%, var(--bg-dark) 100%);
+  width: 100%;
+  overflow-x: hidden;
 }
