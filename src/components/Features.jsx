@@ -1,69 +1,229 @@
-import React from 'react'
+import React, { useRef, useEffect, useState } from 'react'
+import { gsap } from 'gsap'
 import './Features.css'
 
-function Features() {
-  const features = [
-    {
-      icon: (
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-        </svg>
-      ),
-      title: 'Track Every Rep',
-      description: 'Log sets, reps, and weight with detailed tracking. Supports warm-up sets, drop sets, rest-pause, and failure training.',
-      highlight: 'Custom workout splits'
-    },
-    {
-      icon: (
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-        </svg>
-      ),
-      title: 'Workout Calendar',
-      description: 'Visual calendar showing your training history. See your consistency at a glance and track your workout patterns over time.',
-      highlight: 'Never miss a workout'
-    },
-    {
-      icon: (
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
-        </svg>
-      ),
-      title: 'Works Offline',
-      description: 'Log your workouts in the gym without worrying about WiFi or cell service. Everything syncs automatically when you\'re back online.',
-      highlight: 'No internet? No problem'
-    },
-    {
-      icon: (
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-        </svg>
-      ),
-      title: 'Apple Health Sync',
-      description: 'Seamlessly sync with Apple Health. Track body weight, BMI, and export your workouts automatically.',
-      highlight: 'All your health data in one place'
-    },
-    {
-      icon: (
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
-        </svg>
-      ),
-      title: 'Muscle Group Analytics',
-      description: 'Track training volume across 10 muscle groups. Identify imbalances and optimize your workout split for balanced gains.',
-      highlight: 'Train smarter, not just harder'
-    },
-    {
-      icon: (
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-        </svg>
-      ),
-      title: 'Your Data is Private',
-      description: 'No ads, no tracking, no data selling. Optional iCloud sync keeps your workouts across devices. Everything stays private.',
-      highlight: '100% privacy guaranteed'
+const DEFAULT_SPOTLIGHT_RADIUS = 400
+const MOBILE_BREAKPOINT = 768
+
+const featuresData = [
+  {
+    label: 'Insights',
+    title: 'Track Every Rep',
+    description: 'Log sets, reps, and weight with detailed tracking for all exercise types',
+    bgColor: 'rgba(20, 20, 20, 0.6)'
+  },
+  {
+    label: 'Overview',
+    title: 'Workout Calendar',
+    description: 'Visual calendar showing your training history and consistency',
+    bgColor: 'rgba(24, 24, 24, 0.65)'
+  },
+  {
+    label: 'Connectivity',
+    title: 'Works Offline',
+    description: 'Log workouts in the gym without WiFi. Syncs when you\'re back online',
+    bgColor: 'rgba(18, 18, 18, 0.7)',
+    image: '/Images/Shadow_NoInternet.png'
+  },
+  {
+    label: 'Efficiency',
+    title: 'Apple Health Sync',
+    description: 'Seamlessly sync with Apple Health for complete health tracking',
+    bgColor: 'rgba(26, 26, 26, 0.6)',
+    image: '/Images/Shadow_HealtKit.png'
+  },
+  {
+    label: 'Analytics',
+    title: 'Muscle Analytics',
+    description: 'Track volume across muscle groups and optimize your workout split',
+    bgColor: 'rgba(22, 22, 22, 0.65)'
+  },
+  {
+    label: 'Protection',
+    title: 'Your Data is Private',
+    description: 'No ads, no tracking, no data selling. Your workouts stay yours',
+    bgColor: 'rgba(28, 28, 28, 0.6)'
+  },
+  {
+    label: 'AI Power',
+    title: 'AI Workout Insights',
+    description: 'Get personalized recommendations based on your training patterns',
+    bgColor: 'rgba(19, 19, 19, 0.7)'
+  },
+  {
+    label: 'Progress',
+    title: 'Personal Records',
+    description: 'Track your PRs and celebrate every milestone you hit',
+    bgColor: 'rgba(25, 25, 25, 0.65)'
+  },
+  {
+    label: 'Organization',
+    title: 'Custom Exercises',
+    description: 'Create unlimited custom exercises tailored to your training style',
+    bgColor: 'rgba(21, 21, 21, 0.6)'
+  },
+  {
+    label: 'Performance',
+    title: 'Body Metrics',
+    description: 'Track weight, BMI, and body measurements alongside your workouts',
+    bgColor: 'rgba(23, 23, 23, 0.65)'
+  }
+]
+
+const calculateSpotlightValues = radius => ({
+  proximity: radius * 0.5,
+  fadeDistance: radius * 0.75
+})
+
+const updateCardGlowProperties = (card, mouseX, mouseY, glow, radius) => {
+  const rect = card.getBoundingClientRect()
+  const relativeX = ((mouseX - rect.left) / rect.width) * 100
+  const relativeY = ((mouseY - rect.top) / rect.height) * 100
+
+  card.style.setProperty('--glow-x', `${relativeX}%`)
+  card.style.setProperty('--glow-y', `${relativeY}%`)
+  card.style.setProperty('--glow-intensity', glow.toString())
+  card.style.setProperty('--glow-radius', `${radius}px`)
+}
+
+const GlobalSpotlight = ({ gridRef, spotlightRadius = DEFAULT_SPOTLIGHT_RADIUS }) => {
+  const spotlightRef = useRef(null)
+
+  useEffect(() => {
+    if (!gridRef?.current) return
+
+    const spotlight = document.createElement('div')
+    spotlight.className = 'global-spotlight'
+    spotlight.style.cssText = `
+      position: fixed;
+      width: 800px;
+      height: 800px;
+      border-radius: 50%;
+      pointer-events: none;
+      background: radial-gradient(circle,
+        rgba(254, 38, 23, 0.15) 0%,
+        rgba(254, 38, 23, 0.08) 15%,
+        rgba(254, 38, 23, 0.04) 25%,
+        rgba(254, 38, 23, 0.02) 40%,
+        rgba(254, 38, 23, 0.01) 65%,
+        transparent 70%
+      );
+      z-index: 200;
+      opacity: 0;
+      transform: translate(-50%, -50%);
+      mix-blend-mode: screen;
+    `
+    document.body.appendChild(spotlight)
+    spotlightRef.current = spotlight
+
+    const handleMouseMove = e => {
+      if (!spotlightRef.current || !gridRef.current) return
+
+      const section = gridRef.current.closest('.features')
+      const rect = section?.getBoundingClientRect()
+      const mouseInside =
+        rect && e.clientX >= rect.left && e.clientX <= rect.right && e.clientY >= rect.top && e.clientY <= rect.bottom
+
+      const cards = gridRef.current.querySelectorAll('.feature-bento-card')
+
+      if (!mouseInside) {
+        gsap.to(spotlightRef.current, {
+          opacity: 0,
+          duration: 0.3,
+          ease: 'power2.out'
+        })
+        cards.forEach(card => {
+          card.style.setProperty('--glow-intensity', '0')
+        })
+        return
+      }
+
+      const { proximity, fadeDistance } = calculateSpotlightValues(spotlightRadius)
+      let minDistance = Infinity
+
+      cards.forEach(card => {
+        const cardRect = card.getBoundingClientRect()
+        const centerX = cardRect.left + cardRect.width / 2
+        const centerY = cardRect.top + cardRect.height / 2
+        const distance =
+          Math.hypot(e.clientX - centerX, e.clientY - centerY) - Math.max(cardRect.width, cardRect.height) / 2
+        const effectiveDistance = Math.max(0, distance)
+
+        minDistance = Math.min(minDistance, effectiveDistance)
+
+        let glowIntensity = 0
+        if (effectiveDistance <= proximity) {
+          glowIntensity = 1
+        } else if (effectiveDistance <= fadeDistance) {
+          glowIntensity = (fadeDistance - effectiveDistance) / (fadeDistance - proximity)
+        }
+
+        updateCardGlowProperties(card, e.clientX, e.clientY, glowIntensity, spotlightRadius)
+      })
+
+      gsap.to(spotlightRef.current, {
+        left: e.clientX,
+        top: e.clientY,
+        duration: 0.1,
+        ease: 'power2.out'
+      })
+
+      const targetOpacity =
+        minDistance <= proximity
+          ? 0.8
+          : minDistance <= fadeDistance
+            ? ((fadeDistance - minDistance) / (fadeDistance - proximity)) * 0.8
+            : 0
+
+      gsap.to(spotlightRef.current, {
+        opacity: targetOpacity,
+        duration: targetOpacity > 0 ? 0.2 : 0.5,
+        ease: 'power2.out'
+      })
     }
-  ]
+
+    const handleMouseLeave = () => {
+      gridRef.current?.querySelectorAll('.feature-bento-card').forEach(card => {
+        card.style.setProperty('--glow-intensity', '0')
+      })
+      if (spotlightRef.current) {
+        gsap.to(spotlightRef.current, {
+          opacity: 0,
+          duration: 0.3,
+          ease: 'power2.out'
+        })
+      }
+    }
+
+    document.addEventListener('mousemove', handleMouseMove)
+    document.addEventListener('mouseleave', handleMouseLeave)
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove)
+      document.removeEventListener('mouseleave', handleMouseLeave)
+      spotlightRef.current?.parentNode?.removeChild(spotlightRef.current)
+    }
+  }, [gridRef, spotlightRadius])
+
+  return null
+}
+
+const useMobileDetection = () => {
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= MOBILE_BREAKPOINT)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  return isMobile
+}
+
+function Features() {
+  const gridRef = useRef(null)
+  const isMobile = useMobileDetection()
 
   return (
     <section className="features" id="features">
@@ -75,15 +235,23 @@ function Features() {
           </p>
         </div>
 
-        <div className="features-grid">
-          {features.map((feature, index) => (
-            <div className="feature-card" key={index}>
-              <div className="feature-icon-wrapper">
-                {feature.icon}
+        {!isMobile && <GlobalSpotlight gridRef={gridRef} spotlightRadius={DEFAULT_SPOTLIGHT_RADIUS} />}
+
+        <div className="features-bento-grid" ref={gridRef}>
+          {featuresData.map((feature, index) => (
+            <div key={index} className="feature-bento-card" style={{ backgroundColor: feature.bgColor }}>
+              {feature.image && (
+                <div className="card-image">
+                  <img src={feature.image} alt={feature.title} />
+                </div>
+              )}
+              <div className="card-header">
+                <span className="card-label">{feature.label}</span>
               </div>
-              <h3 className="feature-title">{feature.title}</h3>
-              <p className="feature-description">{feature.description}</p>
-              <span className="feature-highlight">{feature.highlight}</span>
+              <div className="card-content">
+                <h3 className="card-title">{feature.title}</h3>
+                <p className="card-description">{feature.description}</p>
+              </div>
             </div>
           ))}
         </div>
