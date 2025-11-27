@@ -46,7 +46,7 @@ function Footer() {
 
         <div className="footer-bottom">
           <p className="footer-copyright">
-            © 2024 ShadowLift. All rights reserved. Built with ❤️ by Sebastián Kučera
+            © 2025 ShadowLift. All rights reserved. Built with ❤️ by Sebastián Kučera
           </p>
           <div className="footer-legal">
             <a href="mailto:privacy@shadowlift.app">Privacy Policy</a>

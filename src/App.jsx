@@ -6,18 +6,24 @@ import Premium from './components/Premium'
 import Screenshots from './components/Screenshots'
 import Download from './components/Download'
 import Footer from './components/Footer'
+import DarkVeil from './components/DarkVeil'
 import './App.css'
 
 function App() {
   return (
     <div className="app">
-      <Navigation />
-      <Hero />
-      <Features />
-      <Premium />
-      <Screenshots />
-      <Download />
-      <Footer />
+      <div className="app-background">
+        <DarkVeil hueShift={250} speed={0.5} />
+      </div>
+      <div className="app-content">
+        <Navigation />
+        <Hero />
+        <Features />
+        <Premium />
+        <Screenshots />
+        <Download />
+        <Footer />
+      </div>
     </div>
   )
 }

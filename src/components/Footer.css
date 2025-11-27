@@ -1,7 +1,18 @@
 .footer {
-  background: var(--surface);
+  background: transparent;
   border-top: 1px solid var(--border-color);
   padding: 4rem 0 2rem;
+  position: relative;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--border-color) 50%, transparent 100%);
 }
 
 .footer-container {
