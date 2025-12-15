@@ -161,13 +161,27 @@
   }
 
   .download-buttons {
-    flex-direction: column;
     gap: 1rem;
   }
 
   .download-btn {
-    width: 100%;
+    flex: 1;
     justify-content: center;
+    min-width: 0;
+    padding: 1rem 1.25rem;
+  }
+
+  .download-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .download-store {
+    font-size: 1rem;
+  }
+
+  .download-label {
+    font-size: 0.65rem;
   }
 
   .download-info {
