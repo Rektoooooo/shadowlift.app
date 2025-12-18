@@ -12,23 +12,25 @@
       // e.g. https://shadowlift.app/splits/abc -> https://shadowlift.app/?/splits/abc
       // This allows the index.html page to load and React Router to handle routing
 
-      var pathSegmentsToKeep = 0;
+      (function() {
+        var pathSegmentsToKeep = 0;
 
-      var l = window.location;
+        var l = window.location;
 
-      // Don't redirect for .well-known paths (needed for Universal Links)
-      if (l.pathname.startsWith('/.well-known/')) {
-        // Let the server handle these files directly
-        return;
-      }
+        // Don't redirect for .well-known paths (needed for Universal Links)
+        if (l.pathname.startsWith('/.well-known/')) {
+          // Let the server handle these files directly
+          return;
+        }
 
-      l.replace(
-        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-        l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
-        l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
-        (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
-        l.hash
-      );
+        l.replace(
+          l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+          l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
+          l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
+          (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+          l.hash
+        );
+      })();
 
     </script>
   </head>
