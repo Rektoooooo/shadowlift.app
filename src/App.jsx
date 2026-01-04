@@ -9,6 +9,7 @@ import Download from './components/Download'
 import Footer from './components/Footer'
 import DarkVeil from './components/DarkVeil'
 import SplitPreview from './pages/SplitPreview'
+import StarsBackground from './components/StarsBackground';
 import './App.css'
 
 function HomePage() {
@@ -30,7 +31,7 @@ function App() {
     <Router>
       <div className="app">
         <div className="app-background">
-          <DarkVeil hueShift={250} speed={0.5} />
+            <StarsBackground />
         </div>
         <div className="app-content">
           <Routes>

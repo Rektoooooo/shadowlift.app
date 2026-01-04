@@ -46,7 +46,6 @@
 
 .feature-bento-card {
   position: relative;
-  border: 1px solid rgba(254, 38, 23, 0.15);
   border-radius: 20px;
   padding: 2rem;
   display: flex;
@@ -149,7 +148,7 @@
   transform: translate(50%, 50%);
   width: 180px;
   height: 180px;
-  opacity: 0.2;
+  opacity: 0.6;
   pointer-events: none;
   z-index: 1;
   overflow: hidden;
@@ -162,7 +161,7 @@
 }
 
 .feature-bento-card:hover .card-image {
-  opacity: 0.35;
+  opacity: 0.6;
   transition: opacity 0.3s ease;
 }
 

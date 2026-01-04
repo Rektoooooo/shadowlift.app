@@ -21,7 +21,7 @@
   width: 50px;
   height: 50px;
   border: 4px solid rgba(255, 255, 255, 0.1);
-  border-top-color: #00D4FF;
+  border-top-color: #FE2617;
   border-radius: 50%;
   animation: spin 1s linear infinite;
   margin-bottom: 20px;
@@ -71,7 +71,7 @@
   font-size: 2.5em;
   font-weight: 800;
   margin: 20px 0;
-  background: linear-gradient(135deg, #00D4FF 0%, #00FFA3 100%);
+  background: linear-gradient(135deg, #FE2617 0%, #FF6B5A 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -93,7 +93,7 @@
 }
 
 .stat strong {
-  color: #00D4FF;
+  color: #FE2617;
   font-size: 1.3em;
 }
 
@@ -124,7 +124,7 @@
 
 .day-card:hover {
   transform: translateY(-2px);
-  border-color: rgba(0, 212, 255, 0.3);
+  border-color: rgba(254, 38, 23, 0.3);
 }
 
 .day-header {
@@ -139,13 +139,13 @@
 .day-header h3 {
   font-size: 1.4em;
   font-weight: 700;
-  color: #00D4FF;
+  color: #FE2617;
   margin: 0;
 }
 
 .exercise-count {
-  background: rgba(0, 212, 255, 0.1);
-  color: #00D4FF;
+  background: rgba(254, 38, 23, 0.1);
+  color: #FE2617;
   padding: 6px 14px;
   border-radius: 20px;
   font-size: 0.9em;
@@ -181,8 +181,8 @@
 }
 
 .exercise-number {
-  background: rgba(0, 212, 255, 0.15);
-  color: #00D4FF;
+  background: rgba(254, 38, 23, 0.15);
+  color: #FE2617;
   width: 32px;
   height: 32px;
   border-radius: 8px;
@@ -214,7 +214,7 @@
 }
 
 .exercise-reps {
-  color: #00FFA3;
+  color: #FF6B5A;
   font-weight: 600;
 }
 
@@ -226,9 +226,9 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.btn-primary {
-  background: linear-gradient(135deg, #00D4FF 0%, #00FFA3 100%);
-  color: #000000;
+.split-preview-container .btn-primary {
+  background: var(--primary-color);
+  color: white;
   border: none;
   padding: 14px 32px;
   border-radius: 12px;
@@ -241,9 +241,9 @@
   gap: 10px;
 }
 
-.btn-primary:hover {
+.split-preview-container .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 212, 255, 0.4);
+  box-shadow: 0 8px 24px rgba(254, 38, 23, 0.4);
 }
 
 .btn-large {
@@ -256,15 +256,14 @@
 }
 
 .download-text {
-  margin-top: 20px;
-  color: #999;
+  color: white;
   font-size: 1em;
 }
 
 .link-button {
   background: none;
   border: none;
-  color: #00D4FF;
+  color: #FE2617;
   text-decoration: underline;
   cursor: pointer;
   font-size: 1em;
@@ -273,7 +272,7 @@
 }
 
 .link-button:hover {
-  color: #00FFA3;
+  color: #FF6B5A;
 }
 
 .split-preview-footer {

@@ -1,0 +1,13 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "PH3V9JYRDW.com.icservis.GymlyFitness",
+        "paths": [
+          "/splits/*"
+        ]
+      }
+    ]
+  }
+}
