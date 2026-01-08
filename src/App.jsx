@@ -12,6 +12,8 @@ import Download from './components/Download'
 import Footer from './components/Footer'
 import DarkVeil from './components/DarkVeil'
 import SplitPreview from './pages/SplitPreview'
+import Support from './pages/Support'
+import Privacy from './pages/Privacy'
 import StarsBackground from './components/StarsBackground';
 import './App.css'
 
@@ -43,6 +45,8 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/splits/:shareId" element={<SplitPreview />} />
+            <Route path="/support" element={<Support />} />
+            <Route path="/privacy" element={<Privacy />} />
           </Routes>
         </div>
       </div>

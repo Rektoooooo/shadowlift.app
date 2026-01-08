@@ -29,9 +29,9 @@ function Footer() {
           <div className="footer-links">
             <h4 className="footer-heading">Support</h4>
             <ul className="footer-list">
-              <li><a href="mailto:support@shadowlift.app">Help Center</a></li>
-              <li><a href="mailto:support@shadowlift.app">Contact Us</a></li>
-              <li><a href="mailto:support@shadowlift.app">TestFlight Beta</a></li>
+              <li><a href="/support">Help Center</a></li>
+              <li><a href="mailto:sebastian.kucera@icloud.com">Contact Us</a></li>
+              <li><a href="mailto:sebastian.kucera@icloud.com">TestFlight Beta</a></li>
             </ul>
           </div>
 
@@ -39,7 +39,7 @@ function Footer() {
             <h4 className="footer-heading">Connect</h4>
             <ul className="footer-list">
               <li><a href="https://www.instagram.com/seb.kuc/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
-              <li><a href="mailto:hello@shadowlift.app">Email</a></li>
+              <li><a href="mailto:sebastian.kucera@icloud.com">Email</a></li>
             </ul>
           </div>
         </div>
@@ -49,9 +49,9 @@ function Footer() {
             © 2025 ShadowLift. All rights reserved. Built with ❤️ by Sebastián Kučera
           </p>
           <div className="footer-legal">
-            <a href="mailto:privacy@shadowlift.app">Privacy Policy</a>
+            <a href="/privacy">Privacy Policy</a>
             <span className="footer-divider">•</span>
-            <a href="mailto:support@shadowlift.app">Terms of Service</a>
+            <a href="/support">Support</a>
           </div>
         </div>
       </div>
