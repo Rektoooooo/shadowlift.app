@@ -1,43 +1,87 @@
 .download {
-  padding: 6rem 0;
+  padding: 8rem 0;
   position: relative;
   background: transparent;
 }
 
+/* Ambient glow */
+.download::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 100%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(254, 38, 23, 0.06) 0%,
+    transparent 50%
+  );
+  pointer-events: none;
+}
+
 .download-container {
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 var(--space-xl);
 }
 
 .download-content {
   text-align: center;
-  max-width: 800px;
+  max-width: 720px;
   margin: 0 auto;
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.download-content.animate {
+  animation: contentReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes contentReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .download-title {
-  font-size: 3rem;
-  font-weight: 900;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-weight: 600;
   line-height: 1.1;
-  margin-bottom: 1.5rem;
-  letter-spacing: -0.02em;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.03em;
   color: var(--text-color);
 }
 
 .download-subtitle {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   color: var(--text-secondary);
-  line-height: 1.6;
+  line-height: 1.7;
   margin-bottom: 3rem;
 }
 
 .download-buttons {
   display: flex;
-  gap: 1.5rem;
+  gap: 1.25rem;
   justify-content: center;
   margin-bottom: 3rem;
   flex-wrap: wrap;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.download-buttons.animate {
+  animation: buttonsReveal 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+}
+
+@keyframes buttonsReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .download-btn {
@@ -45,35 +89,60 @@
   align-items: center;
   gap: 1rem;
   padding: 1.25rem 2rem;
-  border-radius: 14px;
+  border-radius: 16px;
   text-decoration: none;
-  transition: all 0.3s ease;
-  min-width: 220px;
+  transition: var(--transition-base);
+  min-width: 240px;
+  position: relative;
+  overflow: hidden;
+}
+
+.download-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.download-btn:hover::before {
+  left: 100%;
 }
 
 .download-btn-appstore {
-  background-color: var(--primary-color);
+  background: var(--primary-color);
   color: white;
   border: 2px solid var(--primary-color);
+  box-shadow: 0 4px 24px rgba(254, 38, 23, 0.3);
 }
 
 .download-btn-appstore:hover {
-  background-color: #dc1f0f;
+  background: var(--primary-dark);
+  border-color: var(--primary-dark);
   transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(254, 38, 23, 0.4);
+  box-shadow: 0 16px 40px rgba(254, 38, 23, 0.4);
 }
 
 .download-btn-beta {
-  background-color: transparent;
+  background: rgba(255, 255, 255, 0.03);
   color: var(--text-color);
   border: 2px solid var(--border-color);
+  backdrop-filter: blur(var(--blur-sm));
 }
 
 .download-btn-beta:hover {
-  border-color: var(--primary-color);
-  background-color: rgba(254, 38, 23, 0.1);
+  border-color: rgba(254, 38, 23, 0.4);
+  background: rgba(254, 38, 23, 0.08);
   transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(254, 38, 23, 0.2);
+  box-shadow: 0 16px 40px rgba(254, 38, 23, 0.15);
 }
 
 .download-icon {
@@ -87,29 +156,64 @@
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  color: white;
+  color: inherit;
 }
 
 .download-label {
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   font-weight: 500;
-  opacity: 0.9;
+  opacity: 0.8;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
 }
 
 .download-store {
+  font-family: var(--font-display);
   font-size: 1.25rem;
-  font-weight: 700;
+  font-weight: 600;
+  letter-spacing: -0.01em;
 }
 
 .download-info {
   display: flex;
-  gap: 2.5rem;
+  gap: 3rem;
   justify-content: center;
   flex-wrap: wrap;
-  padding-top: 2rem;
+  padding-top: 2.5rem;
   border-top: 1px solid var(--border-color);
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.download-info.animate {
+  animation: infoReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+}
+
+.download-info.animate .info-item {
+  animation: infoItemPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  opacity: 0;
+}
+
+.download-info.animate .info-item:nth-child(1) { animation-delay: 0.5s; }
+.download-info.animate .info-item:nth-child(2) { animation-delay: 0.6s; }
+.download-info.animate .info-item:nth-child(3) { animation-delay: 0.7s; }
+
+@keyframes infoReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes infoItemPop {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .info-item {
@@ -117,13 +221,13 @@
   align-items: center;
   gap: 0.75rem;
   color: var(--text-secondary);
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 0.9375rem;
+  font-weight: 500;
 }
 
 .info-icon {
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   color: var(--primary-color);
   flex-shrink: 0;
 }
@@ -131,58 +235,53 @@
 /* Responsive Design */
 @media (max-width: 968px) {
   .download {
-    padding: 4rem 0;
+    padding: 5rem 0;
   }
 
   .download-title {
-    font-size: 2.5rem;
+    font-size: clamp(1.75rem, 5vw, 2.5rem);
   }
 
   .download-subtitle {
-    font-size: 1.125rem;
+    font-size: 1rem;
   }
 }
 
 @media (max-width: 640px) {
   .download {
-    padding: 3rem 0;
+    padding: 4rem 0;
   }
 
   .download-container {
-    padding: 0 1.5rem;
-  }
-
-  .download-title {
-    font-size: 2rem;
+    padding: 0 var(--space-lg);
   }
 
   .download-subtitle {
-    font-size: 1rem;
     margin-bottom: 2rem;
   }
 
   .download-buttons {
+    flex-direction: column;
     gap: 1rem;
   }
 
   .download-btn {
-    flex: 1;
     justify-content: center;
     min-width: 0;
-    padding: 1rem 1.25rem;
+    padding: 1rem 1.5rem;
   }
 
   .download-icon {
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
   }
 
   .download-store {
-    font-size: 1rem;
+    font-size: 1.125rem;
   }
 
   .download-label {
-    font-size: 0.65rem;
+    font-size: 0.625rem;
   }
 
   .download-info {
@@ -194,10 +293,6 @@
 
 @media (max-width: 480px) {
   .download-container {
-    padding: 0 1rem;
-  }
-
-  .download-title {
-    font-size: 1.75rem;
+    padding: 0 var(--space-md);
   }
 }

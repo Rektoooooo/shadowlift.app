@@ -1,7 +1,27 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './Premium.css'
 
 function Premium() {
+  const sectionRef = useRef(null)
+  const [inView, setInView] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true)
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.1 }
+    )
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
   const premiumFeatures = [
     {
       icon: (
@@ -68,9 +88,9 @@ function Premium() {
   ]
 
   return (
-    <section className="premium" id="premium">
+    <section className="premium" id="premium" ref={sectionRef}>
       <div className="premium-container">
-        <div className="premium-header">
+        <div className={`premium-header ${inView ? 'animate' : ''}`}>
           <div className="premium-badge">
             <svg className="badge-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -101,7 +121,11 @@ function Premium() {
 
         <div className="premium-grid">
           {premiumFeatures.map((feature, index) => (
-            <div className="premium-card" key={index}>
+            <div
+              className={`premium-card ${inView ? 'animate' : ''}`}
+              key={index}
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
               <div className="premium-icon-wrapper">
                 {feature.icon}
               </div>
@@ -116,7 +140,7 @@ function Premium() {
           ))}
         </div>
 
-        <div className="premium-footer">
+        <div className={`premium-footer ${inView ? 'animate' : ''}`}>
           <div className="premium-footer-content">
             <h3 className="premium-footer-title">Ready to Level Up?</h3>
             <p className="premium-footer-text">

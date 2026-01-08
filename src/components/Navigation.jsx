@@ -45,11 +45,14 @@ function Navigation() {
           <a href="#features" className="nav-link" onClick={(e) => { e.preventDefault(); scrollToSection('features'); }}>
             Features
           </a>
+          <a href="#how-it-works" className="nav-link" onClick={(e) => { e.preventDefault(); scrollToSection('how-it-works'); }}>
+            How It Works
+          </a>
           <a href="#premium" className="nav-link" onClick={(e) => { e.preventDefault(); scrollToSection('premium'); }}>
             Premium
           </a>
           <a href="#screenshots" className="nav-link" onClick={(e) => { e.preventDefault(); scrollToSection('screenshots'); }}>
-            Screenshots
+            App Preview
           </a>
           <a href="#download" className="nav-link nav-cta" onClick={(e) => { e.preventDefault(); scrollToSection('download'); }}>
             Download

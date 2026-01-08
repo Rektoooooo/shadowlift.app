@@ -223,12 +223,33 @@ const useMobileDetection = () => {
 
 function Features() {
   const gridRef = useRef(null)
+  const sectionRef = useRef(null)
   const isMobile = useMobileDetection()
+  const [inView, setInView] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true)
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.1 }
+    )
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
 
   return (
-    <section className="features" id="features">
+    <section className="features" id="features" ref={sectionRef}>
       <div className="features-container">
-        <div className="features-header">
+        <div className={`features-header ${inView ? 'animate' : ''}`}>
+          <span className="section-label">Features</span>
           <h2 className="features-title">Everything You Need to Crush Your Goals</h2>
           <p className="features-subtitle">
             Powerful features designed for serious lifters. Track progress, stay consistent, and achieve real results.
@@ -239,7 +260,14 @@ function Features() {
 
         <div className="features-bento-grid" ref={gridRef}>
           {featuresData.map((feature, index) => (
-            <div key={index} className="feature-bento-card" style={{ backgroundColor: feature.bgColor }}>
+            <div
+              key={index}
+              className={`feature-bento-card ${inView ? 'animate' : ''}`}
+              style={{
+                backgroundColor: feature.bgColor,
+                animationDelay: `${index * 0.05}s`
+              }}
+            >
               {feature.image && (
                 <div className="card-image">
                   <img src={feature.image} alt={feature.title} />
