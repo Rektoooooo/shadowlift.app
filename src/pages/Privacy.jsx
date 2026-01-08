@@ -155,9 +155,9 @@ const Privacy = () => {
             <h2>9. Contact Us</h2>
             <p>If you have any questions about this Privacy Policy, please contact us:</p>
             <div className="contact-info">
-              <p><strong>Email:</strong> <a href="mailto:sebastian.kucera@icloud.com">privacy@shadowlift.app</a></p>
+              <p><strong>Email:</strong> <a href="mailto:sebastian.kucera@icloud.com">sebastian.kucera@icloud.com</a></p>
               <p><strong>Developer:</strong> Sebastian Kucera</p>
-              <p><strong>Location:</strong> Slovakia, European Union</p>
+              <p><strong>Location:</strong> Czechia</p>
             </div>
           </section>
         </div>
