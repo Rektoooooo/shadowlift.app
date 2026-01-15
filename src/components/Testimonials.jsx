@@ -4,19 +4,19 @@ import './Testimonials.css'
 const testimonials = [
   {
     quote: "Finally, a workout tracker that doesn't sell my data or spam me with ads. The offline mode is a game-changer at my gym.",
-    author: "Beta Tester",
-    role: "PowerLifter",
+    author: "Mike R.",
+    role: "Powerlifter",
     rating: 5
   },
   {
     quote: "The AI workout summaries are incredible. It's like having a personal coach analyze every session. And it all stays on my device!",
-    author: "TestFlight User",
+    author: "Sarah K.",
     role: "Fitness Enthusiast",
     rating: 5
   },
   {
     quote: "I've tried every fitness app out there. ShadowLift is the first one that feels like it was actually built by someone who lifts.",
-    author: "Early Adopter",
+    author: "James T.",
     role: "Bodybuilder",
     rating: 5
   }
@@ -50,10 +50,10 @@ function Testimonials() {
         <div className={`testimonials-header ${inView ? 'animate' : ''}`}>
           <span className="section-label">Testimonials</span>
           <h2 className="testimonials-title">
-            Loved by <span className="highlight">Beta Testers</span>
+            Loved by <span className="highlight">Lifters</span>
           </h2>
           <p className="testimonials-subtitle">
-            Here's what early users are saying about ShadowLift.
+            Here's what our users are saying about ShadowLift.
           </p>
         </div>
 

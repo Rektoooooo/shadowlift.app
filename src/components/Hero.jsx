@@ -1,14 +1,33 @@
 import React from 'react'
+import Prism from './Prism'
 import './Hero.css'
 
 function Hero() {
   return (
     <section className="hero" id="hero">
+      {/* Prism Background */}
+      <div className="hero-prism-bg">
+        <Prism
+          animationType="3drotate"
+          scale={3.8}
+          baseWidth={3.6}
+          hueShift={0}
+          glow={0.8}
+          bloom={0.8}
+          noise={0}
+          timeScale={0.2}
+          suspendWhenOffscreen={true}
+        />
+      </div>
+
+      {/* Gradient overlay to fade to site background */}
+      <div className="hero-gradient-overlay"></div>
+
       <div className="hero-container">
         <div className="hero-content">
           <div className="hero-badge">
-            <span className="badge-icon">🚀</span>
-            <span className="badge-text">Currently in TestFlight Beta</span>
+            <span className="badge-icon">🎉</span>
+            <span className="badge-text">Now Available on the App Store</span>
           </div>
 
           <h1 className="hero-title">
@@ -42,17 +61,11 @@ function Hero() {
           </div>
 
           <div className="hero-cta">
-            <a href="#download" className="btn btn-primary">
+            <a href="https://apps.apple.com/app/shadowlift/id6743451583" className="btn btn-primary">
               <svg className="btn-icon" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
               </svg>
-              Coming Soon on App Store
-            </a>
-            <a href="https://testflight.apple.com/join/tCKZRzK9" className="btn btn-secondary">
-              <svg className="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
-              </svg>
-              Join TestFlight Beta
+              Download on App Store
             </a>
           </div>
 
@@ -68,7 +81,7 @@ function Hero() {
             </div>
             <div className="trust-divider"></div>
             <div className="trust-item">
-              <span className="trust-number">Active Beta</span>
+              <span className="trust-number">Released</span>
               <span className="trust-label">Real Gym Tested</span>
             </div>
           </div>

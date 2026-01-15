@@ -14,7 +14,7 @@ import DarkVeil from './components/DarkVeil'
 import SplitPreview from './pages/SplitPreview'
 import Support from './pages/Support'
 import Privacy from './pages/Privacy'
-import StarsBackground from './components/StarsBackground';
+import AmbientBackground from './components/AmbientBackground'
 import './App.css'
 
 function HomePage() {
@@ -38,9 +38,7 @@ function App() {
   return (
     <Router>
       <div className="app">
-        <div className="app-background">
-            <StarsBackground />
-        </div>
+        <AmbientBackground />
         <div className="app-content">
           <Routes>
             <Route path="/" element={<HomePage />} />

@@ -28,9 +28,10 @@
 }
 
 .screenshots-container {
-  max-width: 1400px;
+  max-width: 100%;
+  width: 100%;
   margin: 0 auto;
-  padding: 0 var(--space-xl);
+  padding: 0;
   position: relative;
   z-index: 1;
 }
@@ -42,6 +43,7 @@
   max-width: 640px;
   margin-left: auto;
   margin-right: auto;
+  padding: 0 var(--space-xl);
   opacity: 0;
   transform: translateY(40px);
 }
@@ -108,7 +110,9 @@
 
 /* Navigation Arrows */
 .showcase-nav {
-  flex-shrink: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
   width: 56px;
   height: 56px;
   border-radius: 50%;
@@ -121,6 +125,14 @@
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 10;
+}
+
+.showcase-nav-prev {
+  left: 2rem;
+}
+
+.showcase-nav-next {
+  right: 2rem;
 }
 
 .showcase-nav svg {
@@ -172,29 +184,27 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 150px;
+  width: 250px;
   pointer-events: none;
   z-index: 5;
 }
 
 .screenshot-showcase::before {
-  left: 56px;
+  left: 0;
   background: linear-gradient(
     to right,
-    var(--background) 0%,
-    rgba(5, 5, 5, 0.9) 20%,
-    rgba(5, 5, 5, 0.6) 50%,
+    rgba(3, 3, 3, 1) 0%,
+    rgba(3, 3, 3, 0.8) 40%,
     transparent 100%
   );
 }
 
 .screenshot-showcase::after {
-  right: 56px;
+  right: 0;
   background: linear-gradient(
     to left,
-    var(--background) 0%,
-    rgba(5, 5, 5, 0.9) 20%,
-    rgba(5, 5, 5, 0.6) 50%,
+    rgba(3, 3, 3, 1) 0%,
+    rgba(3, 3, 3, 0.8) 40%,
     transparent 100%
   );
 }
@@ -219,15 +229,15 @@
               opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
               filter 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
-  transform: scale(0.8);
-  opacity: 0.35;
-  filter: blur(1px);
+  transform: scale(0.85);
+  opacity: 0.5;
+  filter: blur(1px) brightness(0.7);
 }
 
 .screenshot-item.active {
   transform: scale(1);
   opacity: 1;
-  filter: blur(0);
+  filter: blur(0) brightness(1);
 }
 
 .screenshot-showcase.animate .screenshot-item {
@@ -238,6 +248,7 @@
   from {
     opacity: 0;
     transform: scale(0.7) translateY(40px);
+    filter: blur(2px) brightness(0.4);
   }
 }
 
@@ -245,9 +256,11 @@
 .screenshot-image-wrapper {
   position: relative;
   border-radius: 32px;
-  overflow: visible;
+  overflow: hidden;
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
               box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  background: transparent;
+  border: none;
 }
 
 .screenshot-item:hover .screenshot-image-wrapper {
@@ -267,6 +280,9 @@
   display: block;
   border-radius: 32px;
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  border: none;
+  outline: none;
+  background: transparent;
 }
 
 /* Screenshot Glow */
@@ -279,25 +295,19 @@
   height: 650px;
   background: radial-gradient(
     ellipse at center,
-    rgba(254, 38, 23, 0.15) 0%,
-    rgba(254, 38, 23, 0.06) 30%,
+    rgba(254, 38, 23, 0.1) 0%,
+    rgba(254, 38, 23, 0.04) 30%,
     transparent 60%
   );
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.6s ease;
   z-index: -1;
-  filter: blur(50px);
+  filter: blur(60px);
 }
 
 .screenshot-item.active .screenshot-glow {
   opacity: 1;
-  animation: glowPulse 4s ease-in-out infinite;
-}
-
-@keyframes glowPulse {
-  0%, 100% { opacity: 0.4; transform: translate(-50%, -50%) scale(1); }
-  50% { opacity: 0.6; transform: translate(-50%, -50%) scale(1.03); }
 }
 
 /* Screenshot Caption */
@@ -428,13 +438,21 @@
   }
 
   .screenshot-showcase::before {
-    left: 48px;
-    width: 120px;
+    left: 0;
+    width: 150px;
   }
 
   .screenshot-showcase::after {
-    right: 48px;
-    width: 120px;
+    right: 0;
+    width: 150px;
+  }
+
+  .showcase-nav-prev {
+    left: 1.5rem;
+  }
+
+  .showcase-nav-next {
+    right: 1.5rem;
   }
 }
 
@@ -445,6 +463,7 @@
 
   .screenshots-header {
     margin-bottom: 3rem;
+    padding: 0 var(--space-lg);
   }
 
   .showcase-nav {
@@ -499,13 +518,21 @@
   }
 
   .screenshot-showcase::before {
-    left: 48px;
-    width: 80px;
+    left: 0;
+    width: 120px;
   }
 
   .screenshot-showcase::after {
-    right: 48px;
-    width: 80px;
+    right: 0;
+    width: 120px;
+  }
+
+  .showcase-nav-prev {
+    left: 1rem;
+  }
+
+  .showcase-nav-next {
+    right: 1rem;
   }
 }
 
@@ -515,7 +542,7 @@
   }
 
   .screenshots-container {
-    padding: 0 var(--space-md);
+    padding: 0;
   }
 
   .showcase-nav {

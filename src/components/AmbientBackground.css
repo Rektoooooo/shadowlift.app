@@ -1,0 +1,39 @@
+/* ============================================
+   AMBIENT BACKGROUND
+   Clean, minimal dark background
+   ============================================ */
+
+.ambient-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: #030303;
+}
+
+/* Single subtle gradient for depth */
+.ambient-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 100% 80% at 50% 0%,
+    rgba(20, 20, 20, 1) 0%,
+    rgba(3, 3, 3, 1) 60%
+  );
+}
+
+/* Very subtle warm tint - barely visible */
+.ambient-bg::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 50%;
+  background: radial-gradient(
+    ellipse at 100% 0%,
+    rgba(254, 38, 23, 0.03) 0%,
+    transparent 50%
+  );
+}
